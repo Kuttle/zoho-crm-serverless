@@ -1,2 +1,2 @@
 # zoho-crm-serverless
-Serverless functioin for adding entries for your Zoho CRM.
+Serverless function for adding entries for your Zoho CRM.
