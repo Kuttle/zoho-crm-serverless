@@ -46,11 +46,10 @@ here's a snippet of code (with our actual function name modifed...) from our gat
 
 ```js
 handleSubmit = event => {
-    this.formLoading() // used to start our ajax spinner
+    this.formLoading()
     event.preventDefault()
-
     fetch(
-      'https://app-fake-env-prod-execute-function1.spotinst.io/fx-fake-function'
+      'https://app-fake-env-prod-execute-function1.spotinst.io/fx-fake-function',
       {
         method: 'POST',
         headers: {
@@ -66,11 +65,11 @@ handleSubmit = event => {
           Phone: this.state.Phone,
           Description: this.state.Description,
         }),
-        mode: 'no-cors',
+        mode: 'cors',
       }
     )
-      .then(function(response) {
-        if (response.ok === true) {
+      .then(response => {
+        if (response.ok) {
           this.formConfirmed()
         } else {
           this.formError()
@@ -79,9 +78,7 @@ handleSubmit = event => {
       .catch(err => {
         this.formError()
       })
-  }
 ```
-
 # Links
 
 For more in depth information on the Storage mechanism for storing OAuth Tokens between function calls see here: https://github.com/Kuttle/zoho-crm-serverless-spotinst-storage
