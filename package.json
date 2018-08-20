@@ -1,0 +1,41 @@
+{
+  "name": "zoho-crm-serverless",
+  "author": "Edward Sutton",
+  "license": "ISC",
+  "version": "1.0.0",
+  "description": "Spotinst function that updates Zoho crm leads",
+  "main": "handler.js",
+  "keywords": [
+    "serverless",
+    "spotinst",
+    "zoho",
+    "crm"
+  ],
+  "scripts": {
+    "test": "jest --config ./jest.config.json",
+    "tscVersion": "tsc -v",
+    "clean:modules": "rimraf node_modules",
+    "clean": "rimraf dist",
+    "ins": "npm install --ignore-scripts",
+    "fresh": "rimraf ./node_modules package-lock.json && npm install",
+    "release:patch": "npm version patch && git push --tags",
+    "release:minor": "npm version minor && git push --tags",
+    "release:major": "npm version major && git push --tags",
+    "deploy": "npm run build && serverless deploy"
+  },
+  "dependencies": {
+    "serverless-webpack": "^5.2.0",
+    "source-map-support": "^0.5.6",
+    "zoho-crm-nodejs-sdk": "https://github.com/Kuttle/zoho-crm-nodejs-sdk.git",
+    "zoho-crm-serverless-spotinst-storage": "https://github.com/Kuttle/zoho-crm-serverless-spotinst-storage.git"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.17.0",
+    "@types/node": "^10.5.7",
+    "serverless-spotinst-functions": "*",
+    "ts-loader": "^4.4.2",
+    "typescript": "^3.0.1",
+    "webpack": "^4.16.4",
+    "webpack-node-externals": "^1.7.2"
+  }
+}

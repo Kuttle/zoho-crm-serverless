@@ -1,0 +1,60 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: zoho-crm-serverless
+
+provider:
+  name: spotinst
+  #stage: <Stage Name>  #Optional. Defaults to 'dev', see https://help.spotinst.com/hc/en-us/articles/115005893409
+  spotinst:
+    environment: env-xxxxxx
+functions:
+  crm-updater:
+    runtime: nodejs8.3
+    handler: handler.main
+    memory: 128
+    timeout: 30
+    access: public
+    endpoint:
+      path: /forms
+      method: post
+    cors:
+      enabled: true
+      origin: 'https://kuttle.io' # enter the url of where you are calling the function from, please forgive the shameful plug
+      headers: 'Content-Type' # enter any headers your POST request uses - as it stands this is just Content-Type
+      methods: 'POST' # Limit to just POST requests
+
+    #    iamRoleConfig:
+    #      roleId: # role-id
+    #    activeVersions:
+    #        - "version": "$LATEST"
+    #          "percentage": 100.0
+    #    cron:  # Setup scheduled trigger with cron expression
+    #      active: true
+    #      value: '* * * * *'
+    environmentVariables:
+      IAM_URL: accounts.zoho.com # read this https://www.zoho.com/crm/help/api/v2/#multi-dc
+      CLIENT_ID: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # get from your Zoho Client ID that you have generated here: https://accounts.zoho.com/developerconsole
+      CLIENT_SECRET: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # get from your Zoho Client ID that you have generated here: https://accounts.zoho.com/developerconsole
+      REDIRECT_URL: http://localhost:8000 # get from your Zoho Client ID that you have generated here: https://accounts.zoho.com/developerconsole
+      REFRESH_TOKEN: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # read the README.md if you don't know what to put here...
+      SPOTINST_ACCOUNT: act-xxxxxxxx # required if using the zoho-crm-serverless-spotinst-storage here: https://github.com/Kuttle/zoho-crm-serverless-spotinst-storage
+      SPOTINST_TOKEN: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx # required if using the zoho-crm-serverless-spotinst-storage here: https://github.com/Kuttle/zoho-crm-serverless-spotinst-storage
+      SPOTINST_ENVIRONMENT: env-xxxxxx # required if using the zoho-crm-serverless-spotinst-storage here: https://github.com/Kuttle/zoho-crm-serverless-spotinst-storage
+
+# extend the framework using plugins listed here:
+# https://github.com/serverless/plugins
+# This can be used to exclude aws-sdk even if it is present in the production dependencies
+plugins:
+  - serverless-spotinst-functions
+  - serverless-webpack
