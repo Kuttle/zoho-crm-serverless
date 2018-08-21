@@ -10,7 +10,7 @@ I strongly suggest you read the docs for yourself here: https://www.zoho.com/crm
 
 However, that said, sometimes its nice to just get going. For this I will lean heavily on this great NPM module located [here](https://www.npmjs.com/package/zcrm-oauth2).
 
-This module guides you through the creation of your Zoho Client ID and then helps you generate your first `access token` and the `refresh token` that's used to generate `activation tokens` in future. One thing I would suggest is limiting the access that your `Zoho Client ID` has. I only needed read/write access to the `Leads` area of zoho. so my `auth.json` file looked like this:
+This module guides you through the creation of your Zoho Client ID and then helps you generate your first `access token` and the `refresh token` that's used to generate `activation tokens` in future. One thing I would suggest is limiting the access that your `Zoho Client ID` has. I only needed `CREATE` access to the `Leads` area of zoho. so my `auth.json` file looked like this:
 
 ```json
 {
